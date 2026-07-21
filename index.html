@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Science Fair Project Showcase</title>
+  
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Explore innovative student science fair projects across various disciplines, complete with project details, methodology, student information, and awards.">
+  <meta name="keywords" content="Science Fair, Student Projects, STEM Showcase, Science Gallery, Student Showcase">
+  <meta name="author" content="Science Fair Committee">
+
+  <!-- Google Fonts - Plus Jakarta Sans & Space Grotesk -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght=0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Bootstrap CSS (Bootstrap-5 Grid & Core Reboot) -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Canvas Confetti CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+  <!-- Tailwind Configuration for custom styles -->
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            display: ['"Space Grotesk"', 'sans-serif'],
+          },
+          animation: {
+            'gradient-x': 'gradient-x 15s ease infinite',
+            'pulse-slow': 'pulse 8s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            'float': 'float 6s ease-in-out infinite',
+            'float-delayed': 'float 6s ease-in-out infinite 3s',
+          },
+          keyframes: {
+            'gradient-x': {
+              '0%, 100%': { 'background-position': '0% 50%' },
+              '50%': { 'background-position': '100% 50%' },
+            },
+            'float': {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-20px)' },
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Custom styles for scrollbar, animations and utility overrides -->
+  <style>
+    /* Custom Scrollbar styling */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .dark ::-webkit-scrollbar-thumb {
+      background: rgba(148, 163, 184, 0.15);
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(71, 85, 105, 0.15);
+      border-radius: 9999px;
+    }
+    .dark ::-webkit-scrollbar-thumb:hover {
+      background: rgba(148, 163, 184, 0.3);
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(71, 85, 105, 0.3);
+    }
+
+    /* Glassmorphism utility helpers */
+    .glass-card {
+      background: rgba(255, 255, 255, 0.65);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+    }
+    .dark .glass-card {
+      background: rgba(15, 23, 42, 0.65);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    
+    .glass-nav {
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    }
+    .dark .glass-nav {
+      background: rgba(10, 15, 30, 0.7);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    /* Dynamic text gradient shadow glow */
+    .glow-text-primary {
+      text-shadow: 0 0 40px rgba(99, 102, 241, 0.35);
+    }
+    .dark .glow-text-primary {
+      text-shadow: 0 0 40px rgba(99, 102, 241, 0.6);
+    }
+
+    /* Standardized smooth background transitions */
+    body {
+      transition: background-color 0.5s ease, color 0.5s ease;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+    
+    /* Animation classes */
+    .fade-in {
+      animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+
+  <!-- React core scripts and Babel transpiler -->
+  <script src="https://cdn.jsdelivr.net/npm/react@18.2.0/umd/react.production.min.js" crossorigin></script>
+  <script src="https://cdn.jsdelivr.net/npm/react-dom@18.2.0/umd/react-dom.production.min.js" crossorigin></script>
+  <script src="https://cdn.jsdelivr.net/npm/@babel/standalone@7.24.0/babel.min.js"></script>
+</head>
+<body class="bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 min-h-screen relative overflow-x-hidden">
+
+  <!-- Interactive dynamic backdrop lighting blobs for glassmorphic depth -->
+  <div class="absolute top-[-20%] left-[-10%] w-[50vw] h-[50vw] rounded-full bg-blue-500/10 dark:bg-blue-600/15 blur-[120px] pointer-events-none animate-float-delayed"></div>
+  <div class="absolute top-[40%] right-[-10%] w-[45vw] h-[45vw] rounded-full bg-indigo-500/10 dark:bg-indigo-600/15 blur-[120px] pointer-events-none animate-float"></div>
+  <div class="absolute bottom-[-10%] left-[20%] w-[40vw] h-[40vw] rounded-full bg-violet-500/5 dark:bg-violet-600/10 blur-[120px] pointer-events-none animate-float-delayed"></div>
+
+  <!-- Main Root Container for React app mounting -->
+  <div id="root">
+    <!-- Server Loading Fallback (Fades out when React initializes) -->
+    <div class="d-flex flex-column justify-content-center align-items-center min-vh-screen">
+      <div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;">
+        <span class="visually-hidden">Loading Showcase...</span>
+      </div>
+      <p class="mt-3 text-slate-500 font-medium animate-pulse">Initializing Science Fair Showcase...</p>
+    </div>
+  </div>
+
+  <!-- React Components and Application JavaScript Files loaded via Babel -->
+  <script type="text/babel" src="./mockData.js"></script>
+  <script type="text/babel" src="./components/Navbar.js"></script>
+  <script type="text/babel" src="./components/ProjectCard.js"></script>
+  <script type="text/babel" src="./components/ProjectModal.js"></script>
+  <script type="text/babel" src="./components/Dashboard.js"></script>
+  <script type="text/babel" src="./components/SubmissionForm.js"></script>
+  <script type="text/babel" src="./components/ProjectGallery.js"></script>
+  <script type="text/babel" src="./App.js"></script>
+</body>
+</html>
